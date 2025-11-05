@@ -1,0 +1,205 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    var(--mat-sys-surface) 0%,
+    var(--mat-sys-surface-container-low) 100%
+  );
+  box-sizing: border-box;
+  padding: 3rem 1rem;
+  font-family: var(--mat-sys-body-large-font);
+  color: var(--mat-sys-on-surface);
+}
+
+/* --- CONTAINER --- */
+.form-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 720px;
+  background: var(--mat-sys-surface-container);
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: var(--mat-sys-level1);
+  border: 1px solid var(--mat-sys-outline-variant);
+  transition: all 0.3s ease;
+}
+
+.form-container:hover {
+  box-shadow: var(--mat-sys-level3);
+  background: var(--mat-sys-surface-container-high);
+}
+
+/* --- TITLE --- */
+h2 {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  color: var(--mat-sys-primary);
+  margin-bottom: 2rem;
+}
+
+/* --- FORM FIELDS --- */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.row-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* --- INGREDIENTS SECTION --- */
+.ingredients-section {
+  margin: 2rem 0;
+  background: var(--mat-sys-surface-container-low);
+  padding: 1.4rem 1.6rem;
+  border-radius: 12px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  box-shadow: 0 1px 3px rgba(120, 72, 50, 0.08);
+}
+
+.ingredients-section h4 {
+  margin-bottom: 1rem;
+  color: var(--mat-sys-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.ingredient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.ingredient-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.add-ingredient {
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-ingredient button {
+  border-radius: 50px;
+  padding: 0.4rem 1rem;
+}
+
+/* --- IMAGE PREVIEW --- */
+.image-preview {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* --- BUTTONS --- */
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  padding-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+button[mat-flat-button],
+a[mat-stroked-button],
+a[mat-raised-button] {
+  border-radius: 50px;
+  text-transform: none;
+  font-weight: 500;
+  padding: 0.45rem 1.4rem;
+  transition: all 0.25s ease;
+  min-width: 160px;
+}
+
+button[mat-flat-button] {
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+button[mat-flat-button]:hover {
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  transform: translateY(-1px);
+}
+
+a[mat-stroked-button] {
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-error);
+  border: 1px solid var(--mat-sys-outline-variant);
+}
+
+a[mat-stroked-button]:hover {
+  background-color: var(--mat-sys-error-container);
+  color: var(--mat-sys-on-error-container);
+}
+
+.btn-spinner {
+  margin-right: 0.6rem;
+}
+
+
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+  :host {
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .form-container {
+    padding: 1.5rem;
+  }
+
+  .row-group {
+    grid-template-columns: 1fr;
+  }
+
+  .buttons {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  button[mat-flat-button],
+  a[mat-stroked-button] {
+    width: 100%;
+  }
+}
+
+
+::ng-deep .mat-mdc-form-field-error {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--mat-sys-error);
+}
+
+::ng-deep .mat-mdc-form-field-invalid .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field-invalid .mdc-notched-outline__trailing,
+::ng-deep .mat-mdc-form-field-invalid .mdc-notched-outline__notch {
+  border-color: var(--mat-sys-error) !important;
+}

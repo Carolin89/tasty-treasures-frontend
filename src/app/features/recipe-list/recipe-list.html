@@ -1,0 +1,87 @@
+<div class="list-container">
+    <div class="list-header">
+        <img src="../../../assets/logo.png" height="150px">
+    </div>
+
+    <div class="toolbar">
+        <div class="filters">
+            <mat-form-field appearance="outline">
+                <mat-label>Filter by Category</mat-label>
+                <mat-select [value]="selectedCategory()" (selectionChange)="onCategoryChange($event.value)">
+                    <mat-option value="">All</mat-option>
+                    <mat-option *ngFor="let cat of categories()" [value]="cat">
+                        {{ cat }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="search-field">
+                <mat-label>Search recipes</mat-label>
+                <input matInput [ngModel]="searchQuery()" (ngModelChange)="onSearchChange($event)"
+                    placeholder="e.g. pasta" />
+            </mat-form-field>
+
+        <button mat-flat-button color="primary" class="add-recipe-btn" [routerLink]="['/recipes/new']">
+            <mat-icon>add</mat-icon>
+            New Recipe
+        </button>
+        </div>
+    </div>
+
+    @if (isLoading()) {
+    <div class="state-loader">
+        <mat-progress-spinner mode="indeterminate" diameter="48"></mat-progress-spinner>
+    </div>
+    } @else if (errorMessage()) {
+    <div class="state-error">{{ errorMessage() }}</div>
+    } @else if (filteredRecipes().length === 0) {
+    <p class="state-empty">No recipes found.</p>
+    } @else {
+    <div class="recipe-grid">
+        @for (recipe of filteredRecipes(); track recipe.id) {
+        <mat-card class="recipe-card" appearance="outlined">
+            <img mat-card-image [src]="recipe.imageUrl || 'assets/placeholder.jpg'" alt="{{ recipe.title }}" />
+
+            <mat-card-header>
+                <mat-card-title>{{ recipe.title }}</mat-card-title>
+                <mat-card-subtitle>{{ recipe.category }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div class="recipe-meta">
+                    <div class="meta-item">
+                        <mat-icon>speed</mat-icon>
+                        <span>{{ recipe.difficulty }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <mat-icon>timer</mat-icon>
+                        <span>{{ recipe.cookTimeMinutes + recipe.prepTimeMinutes }} min</span>
+                    </div>
+                    <div class="meta-item">
+                        <mat-icon>restaurant</mat-icon>
+                        <span>{{ recipe.servings }} servings</span>
+                    </div>
+                </div>
+                <p class="short-desc">
+                    {{
+                    recipe.description.length > 120
+                    ? (recipe.description | slice: 0:120) + '…'
+                    : recipe.description
+                    }}
+                </p>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <a mat-raised-button color="primary" [routerLink]="['/recipes', recipe.id]">
+                    View Details
+                </a>
+                <a mat-flat-button color="accent" [routerLink]="['/recipes', recipe.id, 'edit']">
+                    <mat-icon>edit</mat-icon>
+                    Edit
+                </a>
+            </mat-card-actions>
+        </mat-card>
+        }
+    </div>
+    }
+</div>

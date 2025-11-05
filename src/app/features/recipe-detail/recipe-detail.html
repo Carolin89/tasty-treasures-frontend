@@ -1,0 +1,67 @@
+<div class="detail-container">
+    @if (isLoading()) {
+    <div class="state-loader">
+        <mat-progress-spinner mode="indeterminate" diameter="48"></mat-progress-spinner>
+    </div>
+    }
+
+    @if (errorMessage()) {
+    <div class="state-error">{{ errorMessage() }}</div>
+    }
+
+    @if (!isLoading() && recipe()) {
+    <mat-card class="detail-card">
+        <div class="image-header">
+            <img [src]="recipe()?.imageUrl || 'assets/placeholder.jpg'" alt="{{ recipe()?.title }}" />
+            <div class="overlay">
+                <h2 class="title">{{ recipe()?.title }}</h2>
+                <p class="subtitle">{{ recipe()?.category }}</p>
+            </div>
+        </div>
+
+
+        <mat-card-actions align="end">
+            <button mat-flat-button color="accent" [routerLink]="['/recipes', recipe()?.id, 'edit']"  aria-label="Edit this recipe">
+                <mat-icon>edit</mat-icon>
+                <span>Edit Recipe</span>
+            </button>
+            <button mat-flat-button class="delete-btn" style="background:#d32f2f;color:#fff;border-radius:50px;padding:0.45rem 1.4rem;box-shadow:0 3px 6px rgba(211,47,47,0.3);"(click)="onDelete()"  aria-label="Delete this recipe">  <mat-icon aria-hidden="true">delete</mat-icon>
+  <span>Delete</span></button>
+            <button mat-stroked-button color="primary" routerLink="/recipes"  aria-label="Back to recipe list">← Back to list</button>
+            
+        </mat-card-actions>
+        <mat-card-content>
+            <p class="description">{{ recipe()?.description }}</p>
+
+
+            <div class="info-grid recipe">
+                <div class="info-item">
+                    <mat-icon>restaurant</mat-icon>
+                    <span><strong>Servings:</strong> {{ recipe()?.servings }}</span>
+                </div>
+
+                <div class="info-item">
+                    <mat-icon>speed</mat-icon>
+                    <span><strong>Difficulty:</strong> {{ recipe()?.difficulty }}</span>
+                </div>
+
+                <div class="info-item">
+                    <mat-icon>timer</mat-icon>
+                    <span><strong>Total Time:</strong> {{ (recipe()?.cookTimeMinutes ?? 0) + (recipe()?.prepTimeMinutes
+                        ?? 0) }} min</span>
+                </div>
+            </div>
+
+
+            <h4>Ingredients</h4>
+            <ul class="recipe-list">
+                @for (ingredient of recipe()!.ingredients; track ingredient) {
+                <li><mat-icon>check_circle</mat-icon> {{ ingredient }}</li>
+                }
+            </ul>
+        </mat-card-content>
+
+    </mat-card>
+
+    }
+</div>
