@@ -1,0 +1,11 @@
+
+mat-card {
+  border-radius: 16px;
+  box-shadow: var(--mat-sys-level1);
+  border: 1px solid var(--mat-sys-outline-variant);
+  transition: all 0.3s ease;
+}
+mat-card:hover {
+  box-shadow: var(--mat-sys-level3);
+  transform: translateY(-3px);
+}

@@ -1,0 +1,61 @@
+button.mat-mdc-button,
+button.mat-mdc-raised-button,
+button.mat-mdc-stroked-button,
+a.mat-mdc-button,
+a.mat-mdc-raised-button,
+a.mat-mdc-stroked-button,
+button[mat-flat-button],
+button[mat-raised-button],
+button[mat-stroked-button],
+a[mat-flat-button],
+a[mat-raised-button],
+a[mat-stroked-button] {
+    border-radius: 50px !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-transform: none !important;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+    padding: 0.45rem 1.4rem;
+}
+
+button.mat-mdc-raised-button[color='primary'],
+a.mat-mdc-raised-button[color='primary'] {
+    background-color: #fb8c00 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+button.mat-mdc-raised-button[color='primary']:hover,
+a.mat-mdc-raised-button[color='primary']:hover {
+    background-color: #ef6c00 !important;
+}
+
+button.mat-mdc-stroked-button[color='primary'],
+a.mat-mdc-stroked-button[color='primary'] {
+    background-color: transparent !important;
+    border: 2px solid #fb8c00 !important;
+    color: #fb8c00 !important;
+}
+
+button.mat-mdc-stroked-button[color='primary'] .mdc-button__label,
+a.mat-mdc-stroked-button[color='primary'] .mdc-button__label {
+    color: #fb8c00 !important;
+}
+
+button.mat-mdc-stroked-button[color='primary']:hover,
+a.mat-mdc-stroked-button[color='primary']:hover {
+    background-color: #fff3e0 !important;
+    border-color: #ef6c00 !important;
+}
+
+button.mat-mdc-stroked-button[color='primary']:hover .mdc-button__label,
+a.mat-mdc-stroked-button[color='primary']:hover .mdc-button__label {
+    color: #ef6c00 !important;
+}
+
+button[disabled],
+a[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

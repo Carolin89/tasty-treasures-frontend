@@ -1,0 +1,8 @@
+html, body {
+  background: linear-gradient(180deg, #fffaf5 0%, #fff3e0 100%);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  height: 100%;
+
+color: var(--mat-sys-on-surface);
+}
